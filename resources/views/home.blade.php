@@ -26,10 +26,11 @@
             
             @if (Session::get('cargo_general') != "administrativo")
                 <div class="tarjeta">
-                    <a href="/get-mis-cursos/{{Session::get('usuario_general')}}"> <button style="width:100%; height:100%; background:none; border:none; outline:none;">
+                    <!-- <a href="/get-mis-cursos/{{Session::get('usuario_general')}}"> <button style="width:100%; height:100%; background:none; border:none; outline:none;"> -->
+                    <a href="/grados"> <button style="width:100%; height:100%; background:none; border:none; outline:none;">
                         <img src="{{asset('img/cuaderno.png')}}">
-                        <h4><b>Mis Cursos</b></h4>
-                        <p>Cursos asignados para el docente</p>
+                        <h4><b>Listado de Cursos</b></h4>
+                        <p>Consolidados Generales por Grado</p>
                     </button> </a>
                 </div>
             @endif

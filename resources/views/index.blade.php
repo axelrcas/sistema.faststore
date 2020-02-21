@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Inicio de Sesión</title>
     <link rel="stylesheet" href="{{asset('css-local/main.css')}}">
+    <link rel="icon" type="image/png" href="{{asset('img/cuaderno.png')}}"/>
     <link rel="stylesheet" href="{{asset('css-local/iconos.css')}}">
     <link rel="stylesheet" href="{{asset('css-local/estilos.css')}}">
     <!-- GOOGLE FONTs -->

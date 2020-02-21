@@ -6,7 +6,7 @@
     @yield("herramientas_del_head")
     <link rel="stylesheet" href="{{asset('css-local/estilos.css')}}">
     <link rel="stylesheet" href="{{asset('css-local/iconos.css')}}">
-    <link rel="icon" type="image/png" href="{{asset('img/logo.png')}}"/>
+    <link rel="icon" type="image/png" href="{{asset('img/cuaderno.png')}}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -29,7 +29,7 @@
         <ul>
           <li><a href="/home"><span class="icon-home3"></span>Inicio</a></li>
           @if (Session::get('cargo_general') != "administrativo")
-            <li><a href="/get-mis-cursos/{{Session::get('usuario_general')}}"><span class="icon-notebook"></span>Mis Cursos</a></li>
+            <li><a href="/grados"><!-- <a href="/get-mis-cursos/{{Session::get('usuario_general')}}"> --><span class="icon-notebook"></span>Listado de Cursos</a></li>
           @endif
           @if (Session::get('gradoguia_general'))
             <li><a href="/grado-guia"><span class="icon-key"></span>Grado Guía</a></li>
