@@ -1,21 +1,31 @@
 * {
     box-sizing: border-box;
+    margin:0;
+    padding:0;
+    font-family: 'Baloo 2', sans-serif;
 }
 
 body {
-    background: #222222;
     color: #fff;
-    line-height: 1.6;
-    font-family: 'Quicksand', sans-serif;
-    padding: 0 1.5em;
-    
+}
+
+#fondo-principal {
+	display: table;
+    width: 100%;
+	height: 100vh;
+    background: url(../img/fondo.jpg) no-repeat 0 -250px / cover; 
+}
+
+#fondo-principal .hero-content {
+	background-color: rgba(6, 53, 85, 0.85);
+	display: table-cell;
+	vertical-align: middle;
 }
 
 .container {
     max-width: 1170px;
     margin-left: auto;
     margin-right: auto;
-    padding: 1.5em;
 }
 
 ul {
@@ -23,21 +33,21 @@ ul {
     padding: 0;
 }
 
-
 .contact-wrapper {
-    width: 90%;
     margin-left: auto;
     margin-right: auto;
+    width:30%;
+    grid-template-columns: 2fr 1fr;
 }
 
 .contact-wrapper > * {
-    padding: 0.5em;
+    padding: 2em;
 }
 
 .contact-form {
-    background: #222222;
+    background: rgba(10, 40, 59, 0.85);
     border-radius: 25px;
-    box-shadow: 0 0 20px 0 rgba(255, 255, 255, .2);
+    box-shadow: 0 0 20px 0 rgba(255, 255, 255, .35);
 }
 
 .contact-form form {
@@ -46,8 +56,11 @@ ul {
 }
 
 .contact-form h2 {
-    padding-top: 5%;
-    font-size: 150%;
+    font-size: 250%;
+}
+
+.contact-form form p label {
+    font-size: 130%;
 }
 
 .contact-form form label {
@@ -76,6 +89,11 @@ ul {
     border-radius: 08px;
 }
 
+.contact-form form p input {
+    font-size: 100%;
+    padding-left: 15px;
+}
+
 .contact-form form button {
     background: #B70E21;
     border: 0;
@@ -100,21 +118,28 @@ ul {
 }
 
 /* LARGE SIZE */
-@media(min-width: 700px) {
+@media(max-width: 800px) {
     body {
-        padding: 0 4em;
+        background: url(../img/fondo.jpg);
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    #fondo-principal {
+        background: url(../img/fondo.jpg) no-repeat -150px -230px / cover; 
         
     }
     .contact-wrapper {
-        width: 40%;
-        grid-template-columns: 2fr 1fr;
+        width: 80%;
     }
     .contact-wrapper > * {
-        padding: 2em;
+        padding: 0.5em;
     }
     .contact-form h2 {
-        padding-top: 3%;
-        font-size: 180%;
+        padding-top: 5%;
+        font-size:220%;
     }
-    
+    .contact-form form p label {
+        font-size: 150%;
+    }
 }

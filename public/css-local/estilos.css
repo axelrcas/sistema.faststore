@@ -1,6 +1,7 @@
 * {
 	margin:0;
 	padding:0;
+	font-family: 'Baloo 2', sans-serif;
 }
  
 body {
@@ -12,11 +13,14 @@ header {
 }
  
 header nav {
-	width:90%;
-	max-width:1000px;
+	/* width:90%;
 	margin:0 auto;
-	margin-bottom: -20px;
-	background:#222222;
+	background:rgba(10, 40, 59, 1); */
+	padding-top: 10%;
+	position: fixed;
+	width: 18%;
+	height: 100%;
+	background-color: #2d2d2d;
 }
  
 .menu_bar {
@@ -30,15 +34,40 @@ header nav ul {
  
 header nav ul li {
 	float:left;
+	width: 100%;
+	height:50px;
+	border-bottom: 1px solid #323232;
+	overflow: hidden;
 }
 
 header nav ul li a {
 	outline:none;
 }
  
+.contenedor {
+	background: #0098aa;
+	width: 90%;
+	float: right;
+}
+
+
 .cerrar{
-	float:right; 
-	margin:1.65%;
+	float:left; 
+	padding:20px;
+	display:block;
+	color:#fff;
+	display:block;
+	text-decoration:none;
+}
+
+.espacio {
+	margin-right:8px;
+}
+
+.cerrar:hover {
+	text-decoration: none;
+	transition: background-color 1s ease-out;
+	color: rgb(223, 32, 54);
 }
 
 header nav ul li a {
@@ -54,12 +83,11 @@ header nav ul li span {
  
 header nav ul li a:hover,
 header nav ul li a:focus {
-	background:rgba(24, 24, 24, 1);
 	text-decoration: none;
 	transition: background-color 1s ease-out;
-	border-bottom: 3.5px solid #B70E21;
-	color: #B70E21;
+	color: rgb(223, 32, 54);
 }
+
 
 .enlaces-s {
 	background: #222222;
@@ -90,6 +118,10 @@ header nav ul li a:focus {
 		float:none;
 	}
  
+	header nav ul li a{
+		font-size: 20px;
+	}
+
 	.enlaces-s {
 		font-size: 12px;
 	}
@@ -119,84 +151,15 @@ header nav ul li a:focus {
 	}
 
 	.cerrar {
-		float: none;
+		float: right;
 		margin-left: 14%;
-		margin-top: 10%; 
+		margin-top: 25%; 
 		font-size: 25px;
 		width: 72%;
 	}
 
-}
+	.contenedor {
+		width: 100%;
+	}
 
-/*Banner style goes here */
-#HeroBanner {
-	margin-top: 10px;
-	display: table;
-	width: 100%;
-	height: 75vh;
-	background: url(../img/portada.png) no-repeat 0 0 / cover;
-	background-attachment: fixed;
-}
-#HeroBanner .hero-content {
-	background-color: rgba(10,40,60,0.9);
-	display: table-cell;
-	text-align: center;
-	vertical-align: middle;
-	padding: 0 0;
-}
-#HeroBanner .hero-content h1 {
-	font-size: 400%;
-	color: #fff;
-	margin: 0 0 20px;
-}
-#HeroBanner .hero-content p {
-	font-size: 28px;
-	color: #fff;
-	margin: 0 0 30px;
-}
-#HeroBanner .hero-content .hero-cta {
-	font-size: 22px;
-	color: #fff;
-	text-decoration: none;
-	border: 2px solid #fff;
-	border-radius: 0;
-	display: inline-block;
-	padding: 10px 20px;
-	transition: all 0.3s ease-in-out;
-}
-#HeroBanner .hero-content .hero-cta:hover {
-	background-color: #0098aa;
-	border: 2px solid #0098aa;
-	transition: all 0.3s ease-in-out;
-}
-
-.logo-portada {
-	width: 20%;
-}
-
-@media screen and (max-width:800px ) {
-	#HeroBanner {
-		height: 30vh;
-		background-size: 100% auto;
-		background: url(../img/portada.png) repeat 0 0 / cover;
-	}
-	#HeroBanner .hero-content {
-		background-color: rgba(10,40,60,0.9);
-		display: table-cell;
-		text-align: center;
-		vertical-align: middle;
-	}
-	#HeroBanner .hero-content h1 {
-		padding-top: 25px;
-		font-size: 150%;
-		color: #fff;
-	}
-	#HeroBanner .hero-content p {
-		font-size: 90%;
-		color: #fff;
-	}
-	.logo-portada {
-		padding-top: 5%;
-		width: 30%;
-	}
 }

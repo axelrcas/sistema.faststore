@@ -20,7 +20,7 @@ class MisControladores extends Controller
             'contrasenia' => $request['contrasenia']
         ]; 
 
-        $response = $client->post('https://api-consolidadoscbp.herokuapp.com/login', [
+        $response = $client->post('localhost:3000/login', [
             'json' => $dato
         ]);
 
@@ -35,10 +35,10 @@ class MisControladores extends Controller
             $request->session()->put('nombre_general',$var[0]->nombre);
             $request->session()->put('apellido_general',$var[0]->apellido);
             $request->session()->put('cargo_general',$var[0]->cargo);
-            $request->session()->put('gradoguia_general',$var[0]->grado_guia);
         }
 
         return redirect('/home');
+        
     }
 
     public function cerrar_sesion(Request $request) {
