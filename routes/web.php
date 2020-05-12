@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
  */
 
 Route::get('/', function (Request $request) {
-    $usuario = $request->session()->get('usuario_general');
+    $usuario = $request->session()->get('id_general');
 
     if (!$usuario) {
         return redirect('/login');
@@ -19,7 +19,7 @@ Route::get('/', function (Request $request) {
 
 Route::get('/login', function (Request $request) {
     
-    $usuario = $request->session()->get('usuario_general');
+    $usuario = $request->session()->get('id_general');
 
     if (!$usuario) {
         return view('index');
@@ -29,7 +29,7 @@ Route::get('/login', function (Request $request) {
 });
 
 Route::get('/home', function (Request $request) {
-    $usuario = $request->session()->get('usuario_general');
+    $usuario = $request->session()->get('id_general');
 
     if (!$usuario) {
         return redirect('/login');
@@ -39,7 +39,7 @@ Route::get('/home', function (Request $request) {
 });
 
 Route::get('/grados', function (Request $request) {
-    $usuario = $request->session()->get('usuario_general');
+    $usuario = $request->session()->get('id_general');
 
     if (!$usuario) {
         return redirect('/login');
@@ -49,7 +49,7 @@ Route::get('/grados', function (Request $request) {
 });
 
 Route::get('/mis-cursos', function (Request $request) {
-    $usuario = $request->session()->get('usuario_general');
+    $usuario = $request->session()->get('id_general');
 
     if (!$usuario) {
         return redirect('/login');

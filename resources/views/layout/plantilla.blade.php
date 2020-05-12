@@ -4,8 +4,10 @@
     <meta charset="utf-8">
 
     @yield("herramientas_del_head")
-    <link rel="stylesheet" href="{{asset('css-local/estilos.css')}}">
-    <link rel="stylesheet" href="{{asset('css-local/iconos.css')}}">
+    
+    <link rel="stylesheet" href="{{asset('css-local/iconos-menu.css')}}">
+    <link rel="stylesheet" href="{{asset('css-local/estilo_menu.css')}}">
+
     <link rel="icon" type="image/png" href="{{asset('img/cuaderno.png')}}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -19,21 +21,24 @@
     ?>
 
   </head>
-  <body style="background-color: #222222; color:white;">
+  <body class="no-seleccionable">
 
-    <header style="background-color: rgba(10, 40, 59, 1);">
+  <div id="fondo-principal">  
+  <div class="hero-content">
+    <header style="background-color: rgba(45, 0,0, 1);">
       <div class="menu_bar">
-        <a href="#" class="bt-menu"><span class="icon-th-menu"></span><img src="{{asset('img/cbplogo2.png')}}" width="20%"> Inventario</a>
+        <a href="#" class="bt-menu"><span class="icon-menu"></span>Opciones</a>
       </div>
   
       <nav>
         <ul>
-          <li><a href="/home"><span class="icon-home3"></span>Inicio</a></li>
-            
-            <li><a href="/grados"><span class="icon-folder-open"></span>Lotificaciones</a></li>
-            <li><a href="/grado-guia"><span class="icon-database"></span>Clientes</a></li>
-            <li><a href="/verificacion"><span class="icon-database"></span>Proveedores</a></li>
-          
+          <li><a href="/home"><span class="icon-home3"></span>Dashboard</a></li>
+
+            <li><a href="/grados"><span class="icon-lock"></span>Administrativo</a></li>
+            <li><a href="/grados"><span class="icon-briefcase"></span>Empleados</a></li>
+            <li><a href="/grado-guia"><span class="icon-users"></span>Clientes</a></li>
+            <li><a href="/verificacion"><span class="icon-shopping-bag"></span>Productos</a></li>
+
           
           <a href="/cerrar" class="cerrar" title="Cerrar Sesión"><span class="espacio icon-switch"></span>{{Session::get('nombre_general')}} {{Session::get('apellido_general')}}</a>
         </ul>
@@ -45,8 +50,8 @@
       @yield("contenido")
     </div>
 
-    
-
+    </div>
+    </div>
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
     <!-- Java Script
     ================================================== -->

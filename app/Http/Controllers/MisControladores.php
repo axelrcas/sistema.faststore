@@ -13,28 +13,29 @@ class MisControladores extends Controller
 {
     public function iniciar_sesion(Request $request)
     {
-        $client = new Client();
-
-        $dato = [
-            'usuario' => $request['usuario'],
-            'contrasenia' => $request['contrasenia']
-        ]; 
-
-        $response = $client->post('localhost:3000/login', [
-            'json' => $dato
+        $client = new Client([
+            'base_uri' => 'https://backendmarket.herokuapp.com/api/empleados/'
         ]);
 
-        $var = json_decode($response->getBody()->getContents());
+        $dato = [
+            'correo' => $request->usuario,
+            'pass' => $request->contrasenia
+        ]; 
 
-        if ($var == 'No Existe'){ 
+        $response = $client->request('POST','login', [
+            'form_params' => $dato
+        ]);
+
+        $data = json_decode($response->getBody()->getContents(),true);
+
+        
+        if ($data == "Vuelva intentarlo"){ 
             $request->session()->put('error_sesion','true');
             return redirect('/');
         } else {
             $request->session()->forget('error_sesion');
-            $request->session()->put('usuario_general',$var[0]->usuario);
-            $request->session()->put('nombre_general',$var[0]->nombre);
-            $request->session()->put('apellido_general',$var[0]->apellido);
-            $request->session()->put('cargo_general',$var[0]->cargo);
+            $request->session()->put('id_general',$data['Id_Empleado']);
+            $request->session()->put('nombre_general',$data['NombreEmpleado']);
         }
 
         return redirect('/home');
@@ -42,7 +43,7 @@ class MisControladores extends Controller
     }
 
     public function cerrar_sesion(Request $request) {
-        $request->session()->forget('usuario_general');
+        $request->session()->forget('id_general');
         $request->session()->forget('nombre_general');
         $request->session()->forget('apellido_general');
         $request->session()->forget('cargo_general');
