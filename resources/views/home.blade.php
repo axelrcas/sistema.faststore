@@ -16,83 +16,34 @@
             <span>Sistema FastStore</span>
         </div>
 
-
-
-
-        <h1 class="titulo" onclick="mostrarPreprimaria();">Nivel Preprimario</h1>
-
         <div class="carpeta">
             
             <div class="contenedor" id="mostrarPreprimaria">
 
                 <div class="tarjeta">
-                    <a href="/grado-guia"> <button style="width:100%; height:100%; background:none; border:none; outline:none;">
-                        <img src="{{asset('img/paneles.png')}}">
-                        <h4><b>Kinder</b></h4>
-                        <p>Nivel Preprimario</p>
-                    </button> </a>
+                    <h4>Productos Registrados</h4>
+                    <p><span class="icon-shopping-bag" style="padding-right:5%;"></span>{{Session::get('dash_empleados')}}</p>
+                    <div class="precio">Registrados</div>
                 </div>
 
                 <div class="tarjeta">
-                    <a href="/grado-guia"> <button style="width:100%; height:100%; background:none; border:none; outline:none;">
-                        <img src="{{asset('img/paneles.png')}}">
-                        <h4><b>Párvulos</b></h4>
-                        <p>Nivel Preprimario</p>
-                    </button> </a>
+                    <h4>Clientes Registrados</h4>
+                    <p><span class="icon-users" style="padding-right:5%;"></span>{{Session::get('dash_clientes')}}</p>
+                    <div class="precio">Registrados</div>
                 </div>
 
                 <div class="tarjeta">
-                    <a href="/grado-guia"> <button style="width:100%; height:100%; background:none; border:none; outline:none;">
-                        <img src="{{asset('img/paneles.png')}}">
-                        <h4><b>Preparatoria</b></h4>
-                        <p>Nivel Preprimario</p>
-                    </button> </a>
-                </div>
-                <div class="tarjeta">
-                    <a href="/grado-guia"> <button style="width:100%; height:100%; background:none; border:none; outline:none;">
-                        <img src="{{asset('img/paneles.png')}}">
-                        <h4><b>Kinder</b></h4>
-                        <p>Nivel Preprimario</p>
-                    </button> </a>
+                    <h4>Empleados Registrados</h4>
+                    <p><span class="icon-briefcase" style="padding-right:5%;"></span>{{Session::get('dash_empleados')}}</p>
+                    <div class="precio">Registrados</div>
                 </div>
 
                 <div class="tarjeta">
-                    <a href="/grado-guia"> <button style="width:100%; height:100%; background:none; border:none; outline:none;">
-                        <img src="{{asset('img/paneles.png')}}">
-                        <h4><b>Párvulos</b></h4>
-                        <p>Nivel Preprimario</p>
-                    </button> </a>
+                    <h4>Proveedores Registrados</h4>
+                    <p><span class="icon-lock" style="padding-right:5%;"></span>{{Session::get('dash_proveedores')}}</p>
+                    <div class="precio">Registrados</div>
                 </div>
-
-                <div class="tarjeta">
-                    <a href="/grado-guia"> <button style="width:100%; height:100%; background:none; border:none; outline:none;">
-                        <img src="{{asset('img/paneles.png')}}">
-                        <h4><b>Preparatoria</b></h4>
-                        <p>Nivel Preprimario</p>
-                    </button> </a>
-                </div><div class="tarjeta">
-                    <a href="/grado-guia"> <button style="width:100%; height:100%; background:none; border:none; outline:none;">
-                        <img src="{{asset('img/paneles.png')}}">
-                        <h4><b>Kinder</b></h4>
-                        <p>Nivel Preprimario</p>
-                    </button> </a>
-                </div>
-
-                <div class="tarjeta">
-                    <a href="/grado-guia"> <button style="width:100%; height:100%; background:none; border:none; outline:none;">
-                        <img src="{{asset('img/paneles.png')}}">
-                        <h4><b>Párvulos</b></h4>
-                        <p>Nivel Preprimario</p>
-                    </button> </a>
-                </div>
-
-                <div class="tarjeta">
-                    <a href="/grado-guia"> <button style="width:100%; height:100%; background:none; border:none; outline:none;">
-                        <img src="{{asset('img/paneles.png')}}">
-                        <h4><b>Preparatoria</b></h4>
-                        <p>Nivel Preprimario</p>
-                    </button> </a>
-                </div>
+               
             </div>
 
         </div>

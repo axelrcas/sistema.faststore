@@ -23,66 +23,80 @@
   </head>
   <body class="no-seleccionable">
 
-  <div id="fondo-principal">  
-  <div class="hero-content">
-    <header style="background-color: rgba(45, 0,0, 1);">
-      <div class="menu_bar">
-        <a href="#" class="bt-menu"><span class="icon-menu"></span>Opciones</a>
-      </div>
+    <div id="fondo-principal2"></div>
+
+    <div class="hero-content">
+      <header style="background-color: rgba(45, 0,0, 1);">
+        <div class="menu_bar">
+          <a href="#" class="bt-menu"><span class="icon-menu"></span>Opciones</a>
+        </div>
   
-      <nav>
-        <ul>
-          <li><a href="/home"><span class="icon-home3"></span>Dashboard</a></li>
+        <nav>
+          <ul>
 
-            <li><a href="/grados"><span class="icon-lock"></span>Administrativo</a></li>
-            <li><a href="/grados"><span class="icon-briefcase"></span>Empleados</a></li>
-            <li><a href="/grado-guia"><span class="icon-users"></span>Clientes</a></li>
-            <li><a href="/verificacion"><span class="icon-shopping-bag"></span>Productos</a></li>
+          <div class="menu_bar">
+            <a href="#" class="bt-menu" style="float:right;"><span class="icon-menu rotar"></span></a>
+          </div>
 
+          <a href="/cerrar" class="cerrar" title="Cerrar Sesión"><span class="espacio icon-switch"></span><br>{{Session::get('nombre_general')}} {{Session::get('apellido_general')}} <br> 
+                <span style="font-size:15px;">Cerrar Sesión</span>
+          </a>
           
-          <a href="/cerrar" class="cerrar" title="Cerrar Sesión"><span class="espacio icon-switch"></span>{{Session::get('nombre_general')}} {{Session::get('apellido_general')}}</a>
-        </ul>
-      </nav>
-    </header>
+
+            <li><a href="/home"><span class="icon-home3"></span>Dashboard</a></li>
+
+              <li><a href="/"><span class="icon-lock"></span>Administrativo</a></li>
+              <li><a href="/"><span class="icon-briefcase"></span>Empleados</a></li>
+              <li><a href="/"><span class="icon-users"></span>Clientes</a></li>
+              <li><a href="/"><span class="icon-shopping-bag"></span>Productos</a></li>
+
+            
+            </ul>
+        </nav>
+      </header>
 
 
-    <div class="contenedor">
-      @yield("contenido")
-    </div>
+      <div class="contenedor">
+        @yield("contenido")
+      </div>
 
     </div>
+
+    <div class="footer">
+      <div class="der">&copy Desarrollado por:  Masters Developers</div>
     </div>
+
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
     <!-- Java Script
     ================================================== -->
     <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
-    <script>
-$(document).ready(main);
- 
-var contador = 1;
- 
-function main(){
-	$('.menu_bar').click(function(){
-		// $('nav').toggle(); 
- 
-		if(contador == 1){
-			$('nav').animate({
-				left: '0'
-			});
-			contador = 0;
-		} else {
-			contador = 1;
-			$('nav').animate({
-				left: '-100%'
-			});
-		}
- 
-	});
- 
-};
     
+    <!-- ANIMACION BARRA RESPINSIVE -->
+    <script>
+      $(document).ready(main);
+      
+      var contador = 1;
+      
+      function main(){
+        $('.menu_bar').click(function(){
+          // $('nav').toggle(); 
+      
+          if(contador == 1){
+            $('nav').animate({
+              left: '0'
+            });
+            contador = 0;
+          } else {
+            contador = 1;
+            $('nav').animate({
+              left: '-100%'
+            });
+          }
+      
+        });
+      
+      };
     </script>
-
 
   </body>
 </html>

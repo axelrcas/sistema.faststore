@@ -38,27 +38,6 @@ Route::get('/home', function (Request $request) {
     } 
 });
 
-Route::get('/grados', function (Request $request) {
-    $usuario = $request->session()->get('id_general');
-
-    if (!$usuario) {
-        return redirect('/login');
-    } else {
-        return view('grados');
-    } 
-});
-
-Route::get('/mis-cursos', function (Request $request) {
-    $usuario = $request->session()->get('id_general');
-
-    if (!$usuario) {
-        return redirect('/login');
-    } else {
-        return view('mis-cursos');
-    } 
-});
-
-
 
 
 
