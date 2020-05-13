@@ -38,62 +38,61 @@ class MisControladores extends Controller
             $request->session()->put('id_general',$data['Id_Empleado']);
             $request->session()->put('nombre_general',$data['NombreEmpleado']);
             $request->session()->put('apellido_general',$data['ApellidoEmpleado']);
+
+            // GET A PROVEEDORES
+            $client = new Client([
+                'base_uri' => 'https://backendmarket.herokuapp.com/api/productos/proveedores/'
+            ]);
+
+            $response = $client->request('GET','count');
+
+            $proveedores = json_decode($response->getBody()->getContents(),true);
+
+            if ($proveedores>=0) {
+                $request->session()->put('dash_proveedores',$proveedores['numero']);
+            }
+
+            // GET A CLIENTES
+            $client = new Client([
+                'base_uri' => 'https://backendmarket.herokuapp.com/api/clientes/'
+            ]);
+
+            $response = $client->request('GET','countCliente');
+
+            $clientes = json_decode($response->getBody()->getContents(),true);
+
+            if ($clientes>=0) {
+                $request->session()->put('dash_clientes',$clientes['numero']);
+            }
+
+            // GET A PRODUCTOS
+            $client = new Client([
+                'base_uri' => 'https://backendmarket.herokuapp.com/api/productos/'
+            ]);
+
+            $response = $client->request('GET','count');
+
+            $productos = json_decode($response->getBody()->getContents(),true);
+
+            if ($productos>=0) {
+                $request->session()->put('dash_productos',$productos['numero']);
+            }
+
+            // GET A EMPLEADOS
+            $client = new Client([
+                'base_uri' => 'https://backendmarket.herokuapp.com/api/empleados/'
+            ]);
+
+            $response = $client->request('GET','countEmpleados');
+
+            $empleados = json_decode($response->getBody()->getContents(),true);
+
+            if ($empleados>=0) {
+                $request->session()->put('dash_empleados',$empleados['numero']);
+            }
         }
 
-        // GET A PROVEEDORES
-        $client = new Client([
-            'base_uri' => 'https://backendmarket.herokuapp.com/api/productos/proveedores/'
-        ]);
-
-        $response = $client->request('GET','count');
-
-        $proveedores = json_decode($response->getBody()->getContents(),true);
-
-        if ($proveedores>=0) {
-            $request->session()->put('dash_proveedores',$proveedores['numero']);
-        }
-
-        // GET A CLIENTES
-        $client = new Client([
-            'base_uri' => 'https://backendmarket.herokuapp.com/api/clientes/'
-        ]);
-
-        $response = $client->request('GET','countCliente');
-
-        $clientes = json_decode($response->getBody()->getContents(),true);
-
-        if ($clientes>=0) {
-            $request->session()->put('dash_clientes',$clientes['numero']);
-        }
-
-        // GET A PRODUCTOS
-        $client = new Client([
-            'base_uri' => 'https://backendmarket.herokuapp.com/api/productos/'
-        ]);
-
-        $response = $client->request('GET','count');
-
-        $productos = json_decode($response->getBody()->getContents(),true);
-
-        if ($productos>=0) {
-            $request->session()->put('dash_productos',$productos['numero']);
-        }
-
-        // GET A EMPLEADOS
-        $client = new Client([
-            'base_uri' => 'https://backendmarket.herokuapp.com/api/empleados/'
-        ]);
-
-        $response = $client->request('GET','countEmpleados');
-
-        $empleados = json_decode($response->getBody()->getContents(),true);
-
-        if ($empleados>=0) {
-            $request->session()->put('dash_empleados',$empleados['numero']);
-        }
-        
-        return redirect('/home');
-        
+        return redirect('/home');        
     }
 
 
