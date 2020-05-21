@@ -38,6 +38,36 @@ Route::get('/home', function (Request $request) {
     } 
 });
 
+Route::get('/empleados', function (Request $request) {
+    $usuario = $request->session()->get('id_general');
+
+    if (!$usuario) {
+        return redirect('/login');
+    } else {
+        return view('empleados');
+    } 
+});
+
+Route::get('/productos', function (Request $request) {
+    $usuario = $request->session()->get('id_general');
+
+    if (!$usuario) {
+        return redirect('/login');
+    } else {
+        return redirect('/lista-productos');
+    } 
+});
+
+Route::get('/info-producto', function (Request $request) {
+    $usuario = $request->session()->get('id_general');
+
+    if (!$usuario) {
+        return redirect('/login');
+    } else {
+        return redirect('/infor-producto');
+    } 
+});
+
 
 
 
@@ -45,6 +75,12 @@ Route::get('/home', function (Request $request) {
  * RUTAS A LOS CONTROLADORES
  */
 
-Route::get('/cerrar','MisControladores@cerrar_sesion');
-Route::post('/iniciar', 'MisControladores@iniciar_sesion');
-Route::get('/get-mis-cursos/{id}','MisControladores@mis_cursos');
+
+//          LOGUEO DE EMPLEADOS AL SISTEMA
+Route::get('/cerrar','ControladoresLogueo@cerrar_sesion');
+Route::post('/iniciar', 'ControladoresLogueo@iniciar_sesion');
+
+//              CONTROLADORES PRODUCTOS
+Route::get('/lista-productos','ControladoresProductos@productos');   
+Route::post('/insertar-producto','ControladoresProductos@crearproducto'); 
+Route::get('/info-producto','ControladoresProductos@infoproducto'); 

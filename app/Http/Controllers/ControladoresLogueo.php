@@ -9,7 +9,7 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Session\Session;
 
-class MisControladores extends Controller
+class ControladoresLogueo extends Controller
 {
     public function iniciar_sesion(Request $request)
     {
@@ -29,8 +29,7 @@ class MisControladores extends Controller
 
         $data = json_decode($response->getBody()->getContents(),true);
 
-        
-        if ($data == "Vuelva intentarlo"){ 
+        if (count($data) == 1){
             $request->session()->put('error_sesion','true');
             return redirect('/');
         } else {
@@ -95,21 +94,14 @@ class MisControladores extends Controller
         return redirect('/home');        
     }
 
-
-
-
-
-
-
-
-
-
     public function cerrar_sesion(Request $request) {
         $request->session()->forget('id_general');
         $request->session()->forget('nombre_general');
         $request->session()->forget('apellido_general');
-        $request->session()->forget('cargo_general');
-        $request->session()->forget('gradoguia_general');
+        $request->session()->forget('dash_empleados');
+        $request->session()->forget('dash_clientes');
+        $request->session()->forget('dash_proveedores');
+        $request->session()->forget('dash_productos');
         return redirect('/');
     }
 

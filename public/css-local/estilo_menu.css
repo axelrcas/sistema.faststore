@@ -18,7 +18,7 @@ body {
 #fondo-principal2 {
     width: 20%;
 	height: 100vh;
-	background: url(../img/fondo.jpg) no-repeat -250px -120px; 
+	background: url(../img/fondo.jpg) no-repeat -250px -90px; 
 	position: absolute;
 	
 }
@@ -119,7 +119,16 @@ header nav ul li a:focus {
 }
 
 .footer {
-	width:80%; 
+	color: rgb(255, 255, 255);
+	width: 80%;
+	background: rgb(2, 27, 94);
+	padding: 1.5%;
+	
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+	margin-left: 20%;
+	/* width:80%; 
 	height: 10vh;
 	float:right; 
 	position: absolute;
@@ -128,11 +137,11 @@ header nav ul li a:focus {
 	background-color: rgb(2, 27, 94);
 	color: white;
 	font-weight: bold;
-	text-align: center;
-	padding-top: 3vh;
+	
+	padding-top: 3vh; */
 }
 
-@media screen and (max-width:800px ) {
+@media screen and (max-width:480px ) {
 	header nav {
 		padding-top: 0%;
 		width:100%;
@@ -174,10 +183,10 @@ header nav ul li a:focus {
 	.menu_bar .bt-menu {
 		display:block;
 		height: 8vh;
-		padding-top:15px;
+		padding-top:2vh;
 		padding-left:20px;
 		padding-right:20px;
-		padding-bottom:15px;
+		padding-bottom:7vh;
 		background:rgba(45, 45, 45, 1);
 		color:#fff;
 		text-decoration:none;
@@ -203,20 +212,25 @@ header nav ul li a:focus {
 		font-size: 22px;
 		text-align: center;
 		width: 100%;
-		color: rgb(214, 18, 41);;
+		color: rgb(214, 18, 41);
 	}
 
 	.contenedor {
 		width: 100%;
+		margin-bottom: 17px;
 	}
 
 	#fondo-principal2 {
 		display: none;
 	}
 	.footer {
-		width:100%; 
+		width: 100%;
+		position: static;
+		margin-left: 0;
+		line-height: 5;
+		/* width:100%; 
 		padding-top: 4vh;
-		position: relative;
+		position: relative; */
 	}
 
 }

@@ -2,7 +2,7 @@
 
 @section("herramientas_del_head")
     
-    <title>Principal</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="{{asset('css-local/estilo_home.css')}}">
 
 @endsection

@@ -46,9 +46,9 @@
             <li><a href="/home"><span class="icon-home3"></span>Dashboard</a></li>
 
               <li><a href="/"><span class="icon-lock"></span>Administrativo</a></li>
-              <li><a href="/"><span class="icon-briefcase"></span>Empleados</a></li>
+              <li><a href="/empleados"><span class="icon-briefcase"></span>Empleados</a></li>
               <li><a href="/"><span class="icon-users"></span>Clientes</a></li>
-              <li><a href="/"><span class="icon-shopping-bag"></span>Productos</a></li>
+              <li><a href="/productos"><span class="icon-shopping-bag"></span>Productos</a></li>
 
             
             </ul>
@@ -66,7 +66,7 @@
       <div class="der">&copy Desarrollado por:  Masters Developers</div>
     </div>
 
-    <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    
     <!-- Java Script
     ================================================== -->
     <script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
