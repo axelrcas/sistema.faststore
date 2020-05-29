@@ -3,6 +3,7 @@
 <head>
     <title>Inicio de Sesión</title>
     <link href="https://fonts.googleapis.com/css?family=Baloo+2&display=swap" rel="stylesheet"> 
+    <link rel="icon" type="image/png" href="{{asset('img/logo.png')}}"/>
     <link rel="stylesheet" href="{{asset('css-local/estilo_login.css')}}">
     <meta name="viewport" content="width=device-width, user-scalable=no">
 

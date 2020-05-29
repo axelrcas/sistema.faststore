@@ -22,25 +22,25 @@
 
                 <div class="tarjeta">
                     <h4>Productos Registrados</h4>
-                    <p><span class="icon-shopping-bag" style="padding-right:5%;"></span>{{Session::get('dash_empleados')}}</p>
+                    <p><span class="icon-shopping-bag" style="padding-right:5%;"></span>{{ $productoDash }}</p>
                     <div class="precio">Registrados</div>
                 </div>
 
                 <div class="tarjeta">
                     <h4>Clientes Registrados</h4>
-                    <p><span class="icon-users" style="padding-right:5%;"></span>{{Session::get('dash_clientes')}}</p>
+                    <p><span class="icon-users" style="padding-right:5%;"></span>{{ $clientesDash }}</p>
                     <div class="precio">Registrados</div>
                 </div>
 
                 <div class="tarjeta">
                     <h4>Empleados Registrados</h4>
-                    <p><span class="icon-briefcase" style="padding-right:5%;"></span>{{Session::get('dash_empleados')}}</p>
+                    <p><span class="icon-briefcase" style="padding-right:5%;"></span>{{ $empleadosDash }}</p>
                     <div class="precio">Registrados</div>
                 </div>
 
                 <div class="tarjeta">
                     <h4>Proveedores Registrados</h4>
-                    <p><span class="icon-lock" style="padding-right:5%;"></span>{{Session::get('dash_proveedores')}}</p>
+                    <p><span class="icon-lock" style="padding-right:5%;"></span>{{ $proveedoresDash }}</p>
                     <div class="precio">Registrados</div>
                 </div>
                

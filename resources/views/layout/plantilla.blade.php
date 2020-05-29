@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{asset('css-local/iconos-menu.css')}}">
     <link rel="stylesheet" href="{{asset('css-local/estilo_menu.css')}}">
 
-    <link rel="icon" type="image/png" href="{{asset('img/cuaderno.png')}}"/>
+    <link rel="icon" type="image/png" href="{{asset('img/logo.png')}}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Baloo+2&display=swap" rel="stylesheet"> 
@@ -45,9 +45,9 @@
 
             <li><a href="/home"><span class="icon-home3"></span>Dashboard</a></li>
 
-              <li><a href="/"><span class="icon-lock"></span>Administrativo</a></li>
+              <li><a href="/administrativo"><span class="icon-lock"></span>Proveedores</a></li>
               <li><a href="/empleados"><span class="icon-briefcase"></span>Empleados</a></li>
-              <li><a href="/"><span class="icon-users"></span>Clientes</a></li>
+              <li><a href="/clientes"><span class="icon-users"></span>Clientes</a></li>
               <li><a href="/productos"><span class="icon-shopping-bag"></span>Productos</a></li>
 
             
@@ -97,6 +97,10 @@
       
       };
     </script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
   </body>
 </html>

@@ -28,7 +28,7 @@ Route::get('/login', function (Request $request) {
     }
 });
 
-Route::get('/home', function (Request $request) {
+/* Route::get('/home', function (Request $request) {
     $usuario = $request->session()->get('id_general');
 
     if (!$usuario) {
@@ -37,7 +37,7 @@ Route::get('/home', function (Request $request) {
         return view('home');
     } 
 });
-
+ */
 Route::get('/empleados', function (Request $request) {
     $usuario = $request->session()->get('id_general');
 
@@ -68,8 +68,25 @@ Route::get('/info-producto', function (Request $request) {
     } 
 });
 
+Route::get('/administrativo', function (Request $request) {
+    $usuario = $request->session()->get('id_general');
 
+    if (!$usuario) {
+        return redirect('/login');
+    } else {
+        return redirect('/lista-proveedores');
+    } 
+});
 
+Route::get('/clientes', function (Request $request) {
+    $usuario = $request->session()->get('id_general');
+
+    if (!$usuario) {
+        return redirect('/login');
+    } else {
+        return redirect('/lista-clientes');
+    } 
+});
 
 /*
  * RUTAS A LOS CONTROLADORES
@@ -79,8 +96,26 @@ Route::get('/info-producto', function (Request $request) {
 //          LOGUEO DE EMPLEADOS AL SISTEMA
 Route::get('/cerrar','ControladoresLogueo@cerrar_sesion');
 Route::post('/iniciar', 'ControladoresLogueo@iniciar_sesion');
+Route::get('/home', 'ControladoresLogueo@home');
 
 //              CONTROLADORES PRODUCTOS
 Route::get('/lista-productos','ControladoresProductos@productos');   
 Route::post('/insertar-producto','ControladoresProductos@crearproducto'); 
 Route::get('/info-producto','ControladoresProductos@infoproducto'); 
+Route::post('/crear-categoria','ControladoresProductos@crearcategoria');
+Route::delete('/eliminar-categoria','ControladoresProductos@eliminarcategoria');
+Route::post('/ingreso-producto','ControladoresProductos@ingresoproducto');
+Route::post('/eliminar-producto','ControladoresProductos@eliminarproducto');
+Route::delete('/borrar-producto','ControladoresProductos@borrarproducto');
+
+//              CONTROLADORES PROVEEDORES
+Route::get('/lista-proveedores','ControladoresProveedores@proveedores');   
+Route::post('/crear-proveedor','ControladoresProveedores@crearproveedor'); 
+Route::delete('/borrar-proveedor','ControladoresProveedores@borrarproveedor');
+
+//              CONTROLADORES CLIENTES
+Route::get('/lista-clientes','ControladoresClientes@clientes'); 
+Route::post('/crear-tipocliente','ControladoresClientes@creartipocliente');
+Route::post('/crear-cliente','ControladoresClientes@crearcliente');
+Route::delete('/borrar-cliente','ControladoresClientes@borrarcliente');
+Route::delete('/eliminar-tipocliente','ControladoresClientes@eliminartipocliente');

@@ -37,6 +37,27 @@ class ControladoresLogueo extends Controller
             $request->session()->put('id_general',$data['Id_Empleado']);
             $request->session()->put('nombre_general',$data['NombreEmpleado']);
             $request->session()->put('apellido_general',$data['ApellidoEmpleado']);
+        }
+
+        return redirect('/home');        
+    }
+
+    public function home(Request $request) {
+        $usuario = $request->session()->get('id_general');
+
+        if (!$usuario) {
+            return redirect('/login');
+        } else {
+            // GET A PRODUCTOS
+            $client = new Client([
+                'base_uri' => 'https://backendmarket.herokuapp.com/api/productos/'
+            ]);
+
+            $response = $client->request('GET','count');
+
+            $productos = json_decode($response->getBody()->getContents(),true);
+
+            $productoDash = $productos['numero'];
 
             // GET A PROVEEDORES
             $client = new Client([
@@ -47,9 +68,7 @@ class ControladoresLogueo extends Controller
 
             $proveedores = json_decode($response->getBody()->getContents(),true);
 
-            if ($proveedores>=0) {
-                $request->session()->put('dash_proveedores',$proveedores['numero']);
-            }
+            $proveedoresDash = $proveedores['numero'];
 
             // GET A CLIENTES
             $client = new Client([
@@ -60,22 +79,7 @@ class ControladoresLogueo extends Controller
 
             $clientes = json_decode($response->getBody()->getContents(),true);
 
-            if ($clientes>=0) {
-                $request->session()->put('dash_clientes',$clientes['numero']);
-            }
-
-            // GET A PRODUCTOS
-            $client = new Client([
-                'base_uri' => 'https://backendmarket.herokuapp.com/api/productos/'
-            ]);
-
-            $response = $client->request('GET','count');
-
-            $productos = json_decode($response->getBody()->getContents(),true);
-
-            if ($productos>=0) {
-                $request->session()->put('dash_productos',$productos['numero']);
-            }
+            $clientesDash = $clientes['numero'];
 
             // GET A EMPLEADOS
             $client = new Client([
@@ -86,12 +90,10 @@ class ControladoresLogueo extends Controller
 
             $empleados = json_decode($response->getBody()->getContents(),true);
 
-            if ($empleados>=0) {
-                $request->session()->put('dash_empleados',$empleados['numero']);
-            }
-        }
+            $empleadosDash = $empleados['numero'];
 
-        return redirect('/home');        
+            return view('home')->with(['productoDash'=>$productoDash, 'proveedoresDash'=>$proveedoresDash, 'clientesDash'=>$clientesDash, 'empleadosDash'=>$empleadosDash]);
+        } 
     }
 
     public function cerrar_sesion(Request $request) {

@@ -10,67 +10,56 @@ use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Image;
 
-class ControladoresProductos extends Controller
+class ControladoresClientes extends Controller
 {
-    public function productos() {
+    public function clientes() {
 
         $client = new Client([
             'base_uri' => 'http://backendmarket.herokuapp.com/api/'
         ]);
 
-        $response = $client->request('GET','productos');
+        $response = $client->request('GET','clientes');
 
         $array = json_decode($response->getBody()->getContents(),true);
 
         $data = $array['res'];
 
         $client = new Client([
-            'base_uri' => 'http://backendmarket.herokuapp.com/api/productos/'
+            'base_uri' => 'https://backendmarket.herokuapp.com/api/clientes/'
         ]);
 
-        $response = $client->request('GET','cat');
+        $response = $client->request('GET','tipos');
 
         $array2 = json_decode($response->getBody()->getContents(),true);
 
         $data2 = $array2['res'];
 
-        return view('productos', compact('data'), compact('data2'));
+        return view('clientes', compact('data'), compact('data2'));
     }
 
-    public function crearproducto(Request $request) {
-
-        $tempname = str_shuffle("abcdefghijklmnopqrstuvwxyz0123456789".uniqid());
-        $nuevonombre = $tempname.".png";
-        $ruta = public_path('img/productos'); 
-        $imagenOriginal = $request->file('imagen');
-        $imagenOriginal->move($ruta,$nuevonombre); 
+    public function crearcliente(Request $request) {
 
         $client = new Client([
-            'base_uri' => 'https://backendmarket.herokuapp.com/api/productos/'
+            'base_uri' => 'https://backendmarket.herokuapp.com/api/'
         ]);
 
         $dato = [
-            'idemp' => $request->session()->get('id_general'),
-            'idcat' => $request->idcat,
-            'token' => $nuevonombre,
-            'producto' => $request->producto,
-            'precio' => $request->precio,
-            'costo' => $request->costo,
-            'marca' => $request->marca,
-            'descripcion' => $request->descripcion,
-            'cantidad' => $request->cantidad,
-            'vencidos' => $request->vencidos,
-            'presentacion' => $request->presentacion,
-            'unidadMedida' => $request->unidadMedida
+            'tipo' => $request->tipo,
+            'nombre' => $request->nombre,
+            'apellido' => $request->apellido,
+            'correo' => $request->correo,
+            'pass' => $request->pass,
+            'tel' => $request->telefono,
+            'nit' => $request->nit
         ]; 
 
         sleep(2);
 
-        $response = $client->request('POST','token', [
+        $response = $client->request('POST','clientes', [
             'form_params' => $dato
         ]);
 
-        return redirect('/home');
+        return redirect('/lista-clientes');
         //return json_decode($response->getBody()->getContents(),true);
 
     }
@@ -96,37 +85,38 @@ class ControladoresProductos extends Controller
         } 
     }
 
-    public function crearcategoria(Request $request) {
-        
+    public function creartipocliente(Request $request) {
+      
+
         $client = new Client([
-            'base_uri' => 'https://backendmarket.herokuapp.com/api/productos/'
+            'base_uri' => 'https://backendmarket.herokuapp.com/api/clientes/'
         ]);
 
         $dato = [
-            'categoria' => $request->nuevacategoria
+            'tipo' => $request->nuevatipo
         ]; 
 
-        $response = $client->request('POST','cat', [
+        $response = $client->request('POST','tipo', [
             'form_params' => $dato
         ]);
 
-        return redirect('/lista-productos');
+        return redirect('/lista-clientes');
         // json_decode($response->getBody()->getContents(),true);
     }
 
-    public function eliminarcategoria(Request $request) {
+    public function eliminartipocliente(Request $request) {
 
-        $id = $request->idcat;
+        $id = $request->idtipo;
 
         $client = new Client([
-            'base_uri' => 'https://backendmarket.herokuapp.com/api/productos/delete/categoria/'
+            'base_uri' => 'https://backendmarket.herokuapp.com/api/clientes/tipo/'
         ]);
 
-        $response = $client->delete('https://backendmarket.herokuapp.com/api/productos/delete/categoria/'.$id);
+        $response = $client->delete('https://backendmarket.herokuapp.com/api/clientes/tipo/'.$id);
     
         //return json_decode($response->getBody()->getContents(),true);
 
-        return redirect('/lista-productos');
+        return redirect('/lista-clientes');
     }
 
     public function ingresoproducto(Request $request) {
@@ -167,18 +157,18 @@ class ControladoresProductos extends Controller
         return redirect('/lista-productos');
     }
 
-    public function borrarproducto(Request $request) {
+    public function borrarcliente(Request $request) {
 
-        $id = $request->idproducto;
+        $id = $request->idcliente;
 
         $client = new Client([
             'base_uri' => 'https://backendmarket.herokuapp.com/'
         ]);
 
-        $response = $client->delete('https://backendmarket.herokuapp.com/api/productos/delete/'.$id);
+        $response = $client->delete('https://backendmarket.herokuapp.com/api/clientes/'.$id);
     
         //return json_decode($response->getBody()->getContents(),true);
 
-        return redirect('/lista-productos');
+        return redirect('/lista-clientes');
     }
 }
