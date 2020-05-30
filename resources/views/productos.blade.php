@@ -131,6 +131,7 @@
                     <td>Q {{ number_format(intval($dato['Costo']), 2, '.', ',') }}</td>
                     <td>{{ $dato['MarcaProducto'] }}</td>
                     <td> {{ $dato['ExistenciaProducto']}} </td>
+                    <td> <img width="50px" src="{{ asset('img/productos/'.$dato['Imagen']) }}" alt=""> </td>
                     <td style="width:9vh;"> <input type="submit" class="btn btn-danger btn-sm" value="Borrar Producto"> </td>    
                 </tbody>
                 </form>

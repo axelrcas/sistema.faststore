@@ -43,10 +43,12 @@
                     <p><span class="icon-lock" style="padding-right:5%;"></span>{{ $proveedoresDash }}</p>
                     <div class="precio">Registrados</div>
                 </div>
-               
+
             </div>
 
         </div>
+
+        
     
     </div>
 
