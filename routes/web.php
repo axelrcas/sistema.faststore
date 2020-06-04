@@ -88,6 +88,27 @@ Route::get('/clientes', function (Request $request) {
     } 
 });
 
+Route::get('/empleados', function (Request $request) {
+    $usuario = $request->session()->get('id_general');
+
+    if (!$usuario) {
+        return redirect('/login');
+    } else {
+        return redirect('/lista-empleados');
+    } 
+});
+
+Route::get('/ventas', function (Request $request) {
+    $usuario = $request->session()->get('id_general');
+
+    if (!$usuario) {
+        return redirect('/login');
+    } else {
+        return redirect('/proceso-ventas');
+    } 
+});
+
+
 /*
  * RUTAS A LOS CONTROLADORES
  */
@@ -119,3 +140,13 @@ Route::post('/crear-tipocliente','ControladoresClientes@creartipocliente');
 Route::post('/crear-cliente','ControladoresClientes@crearcliente');
 Route::delete('/borrar-cliente','ControladoresClientes@borrarcliente');
 Route::delete('/eliminar-tipocliente','ControladoresClientes@eliminartipocliente');
+
+//              CONTROLADORES EMPLEADOS
+Route::get('/lista-empleados','ControladoresEmpleados@empleados'); 
+Route::post('/crear-empresa','ControladoresEmpleados@crearempresa');
+Route::post('/crear-empleado','ControladoresEmpleados@crearempleado');
+Route::delete('/borrar-empleado','ControladoresEmpleados@borrarempleado');
+
+//              CONTROLADORES VENTAS
+Route::get('/proceso-ventas','ControladoresVentas@ventas');
+Route::post('/insertar-venta','ControladoresVentas@insertarventas');

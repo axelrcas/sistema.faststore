@@ -27,7 +27,6 @@
             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalEliminarTipo" style="width:20%;">
             Eliminar Tipo de Cliente
             </button> 
-
             
         </div>
 
@@ -101,7 +100,7 @@
         <br><br><br>
 
         <div class="mitabla" style="border-style:solid; border-color:#586995;">
-        <table class="table table-bordered" id="resultado">
+        <table class="table table-bordered">
             <thead style="background-color:#586995; color:white;">
                 <tr>
                 <th scope="col">#</th>
@@ -140,13 +139,12 @@
         <br>
 
         <div class="container">
-            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalEliminarProductos" style="margin-left:1%; width:20%; float:right;">
-                Dar Baja a Productos
-            </button> 
 
-            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalMasProducto" style="width:20%; float:right;">
-                Dar Ingreso a Productos
-            </button> 
+            
+            
+
+            <a href="/ventas" class="btn btn-info btn-sm btn-block" style="width:30%; float:right;">Crear Venta </a>
+
         </div>
 
     </div>
@@ -191,12 +189,12 @@
             </div>
         </div>
 
-        <!-- Modal Eliminar Productos -->
+        <!-- Modal Crear Venta -->
         <div class="modal fade" id="modalEliminarProductos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Dar de Baja Productos Existentes</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Crear Venta</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -204,10 +202,21 @@
                 <form action="{{url('/eliminar-producto')}}" method="POST">
                     {{csrf_field()}}
                 <div class="modal-body">
-                            <select class="custom-select d-block w-100" id="country" name="nombre" required onclick="categoria()">
+                            
+                <select class="custom-select d-block w-100" id="country" name="tipo" required onclick="categoria()">
                                 @foreach ($data as $dato)
-                                    <option value="{{ $dato['NombreCliente'] }}">{{ $dato['NombreCliente'] }}</option>
+                                        <option value="{{ $dato['Id_Cliente'] }}">{{ $dato['NombreCliente'] }} {{ $dato['ApellidoCliente'] }}</option>
+                                
                                 @endforeach
+                            </select> <br>
+
+                            <select class="custom-select d-block w-100" id="resultado" name="tipo" required>
+                                
+                            </select> <br>
+
+                            <select class="custom-select d-block w-100" name="credito">
+                                <option value="1">Con Crédito</option>
+                                <option value="0">Sin Crédito</option>
                             </select> <br>
 
                     <input type="text" class="inputFormu form-control mr-sm-2" name="cantidad" placeholder="Cantidad a dar de baja" onkeypress="return check(event)" autocomplete="off" required>
@@ -222,9 +231,7 @@
             </div>
         </div>
 
-
     <script>
-
         function check(e) {
             tecla = (document.all) ? e.keyCode : e.which;
 
@@ -239,79 +246,9 @@
             return patron.test(tecla_final);
         }
 
-function obtener(variable) {
-
-    console.log(variable);
-    
-    if (variable.length == 0) {
         
-            var resultado = document.getElementById('resultado');
-            resultado.innerHTML = '';
 
-            resultado.innerHTML = `
-            <thead style="background-color:#586995; color:white;">
-                <tr>
-                <th scope="col">#</th>
-                <th scope="col">Id</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellido</th>
-                <th scope="col">Correo</th>
-                <th scope="col">Telefono</th>
-                <th scope="col">NIT</th>
-                </tr>
-            </thead>
-                @foreach ($data as $dato)
-                <tbody >
-                    <td>1</th>
-                    <td>{{ $dato['Id_Cliente'] }}</td>
-                    <td>{{ $dato['NombreCliente'] }}</td>
-                    <td>{{ $dato['ApellidoCliente'] }}</td>
-                    <td>{{ $dato['CorreoCliente'] }}</td>
-                    <td>{{ $dato['TelefonoCliente'] }}</td>
-                    <td>
-                        {{ $dato['NitCliente']}}
-                    </td>
-                </tbody>
-                @endforeach  
-            `;
-    }else{
-        fetch('https://backendmarket.herokuapp.com/api/productos/'+variable)
-        .then(datos=>datos.json())
-        .then(datos=>{
-            var resultado = document.getElementById('resultado');
-            resultado.innerHTML = '';
-
-            resultado.innerHTML = `
-                <thead style="background-color:#586995; color:white;">
-                    <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Id</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Apellido</th>
-                    <th scope="col">Correo</th>
-                    <th scope="col">Telefono</th>
-                    <th scope="col">NIT</th>
-                    </tr>
-                </thead>
-            `;
-
-            for (let dato of datos) {
-                resultado.innerHTML += `
-                        <tbody>
-                                    <td>1</th>
-                                    <td>${dato.Id_Cliente}</th>
-                                    <td>${dato.NombreCliente}</td>
-                                    <td>${dato.ApellidoCliente}</td>
-                                    <td>${dato.CorreoCliente}</td>
-                                    <td>${dato.TelefonoCliente}</td>
-                                    <td>${dato.NitCliente}</td>
-                        </tbody> 
-                `;
-            }
-        })
-    }
-}
-    </script>
+</script>
 
 
 

@@ -10,46 +10,34 @@ use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Image;
 
-class ControladoresClientes extends Controller
+class ControladoresEmpleados extends Controller
 {
-    public function clientes() {
+    public function empleados() {
 
         $client = new Client([
             'base_uri' => 'http://backendmarket.herokuapp.com/api/'
         ]);
 
-        $response = $client->request('GET','clientes');
+        $response = $client->request('GET','empleados');
 
         $array = json_decode($response->getBody()->getContents(),true);
 
         $data = $array['res'];
 
         $client = new Client([
-            'base_uri' => 'https://backendmarket.herokuapp.com/api/clientes/'
+            'base_uri' => 'https://backendmarket.herokuapp.com/api/empleados/'
         ]);
 
-        $response = $client->request('GET','tipos');
+        $response = $client->request('GET','empresa');
 
-        $array2 = json_decode($response->getBody()->getContents(),true);
+        $data2 = json_decode($response->getBody()->getContents(),true);
 
-        $data2 = $array2['res'];   
-        
-        /* $client = new Client([
-            'base_uri' => 'https://backendmarket.herokuapp.com/api/'
-        ]);
+       /*  $data2 = $array2['res']; */
 
-        $response = $client->request('GET','productos');
-
-        $array3 = json_decode($response->getBody()->getContents(),true);
-
-        $data3 = $array3['res']; 
-
-        return $data3; */
-
-        return view('clientes', compact('data'), compact('data2'));
+        return view('empleados', compact('data'), compact('data2'));
     }
 
-    public function crearcliente(Request $request) {
+    public function crearempleado(Request $request) {
 
         $client = new Client([
             'base_uri' => 'https://backendmarket.herokuapp.com/api/'
@@ -62,16 +50,18 @@ class ControladoresClientes extends Controller
             'correo' => $request->correo,
             'pass' => $request->pass,
             'tel' => $request->telefono,
-            'nit' => $request->nit
+            'nit' => $request->nit,
+            'residencia' => $request->residencia,
+            'tipoEmpleado' => $request->tipoempleado
         ]; 
 
         sleep(2);
 
-        $response = $client->request('POST','clientes', [
+        $response = $client->request('POST','empleados', [
             'form_params' => $dato
         ]);
 
-        return redirect('/lista-clientes');
+        return redirect('/lista-empleados');
         //return json_decode($response->getBody()->getContents(),true);
 
     }
@@ -97,23 +87,27 @@ class ControladoresClientes extends Controller
         } 
     }
 
-    public function creartipocliente(Request $request) {
+    public function crearempresa(Request $request) {
       
-
         $client = new Client([
-            'base_uri' => 'https://backendmarket.herokuapp.com/api/clientes/'
+            'base_uri' => 'https://backendmarket.herokuapp.com/api/empleados/'
         ]);
 
         $dato = [
-            'tipo' => $request->nuevatipo
+            'nombre' => $request->nombre,
+            'slogan' => $request->slogan,
+            'logo' => 'none',
+            'address' => $request->direccion,
+            'email' => $request->email
         ]; 
 
-        $response = $client->request('POST','tipo', [
+        $response = $client->request('POST','empresa', [
             'form_params' => $dato
         ]);
 
-        return redirect('/lista-clientes');
-        // json_decode($response->getBody()->getContents(),true);
+        return json_decode($response->getBody()->getContents(),true);
+        return redirect('/lista-empleados');
+        
     }
 
     public function eliminartipocliente(Request $request) {
@@ -169,18 +163,18 @@ class ControladoresClientes extends Controller
         return redirect('/lista-productos');
     }
 
-    public function borrarcliente(Request $request) {
+    public function borrarempleado(Request $request) {
 
-        $id = $request->idcliente;
+        $id = $request->idempleado;
 
         $client = new Client([
             'base_uri' => 'https://backendmarket.herokuapp.com/'
         ]);
 
-        $response = $client->delete('https://backendmarket.herokuapp.com/api/clientes/'.$id);
+        $response = $client->delete('https://backendmarket.herokuapp.com/api/empleados/'.$id);
     
         //return json_decode($response->getBody()->getContents(),true);
 
-        return redirect('/lista-clientes');
+        return redirect('/lista-empleados');
     }
 }

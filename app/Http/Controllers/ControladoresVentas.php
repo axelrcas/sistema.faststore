@@ -10,9 +10,19 @@ use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Image;
 
-class ControladoresClientes extends Controller
+class ControladoresVentas extends Controller
 {
-    public function clientes() {
+    public function ventas() {
+
+        $client = new Client([
+            'base_uri' => 'http://backendmarket.herokuapp.com/api/'
+        ]);
+
+        $response = $client->request('GET','productos');
+
+        $array = json_decode($response->getBody()->getContents(),true);
+
+        $data = $array['res'];
 
         $client = new Client([
             'base_uri' => 'http://backendmarket.herokuapp.com/api/'
@@ -20,59 +30,64 @@ class ControladoresClientes extends Controller
 
         $response = $client->request('GET','clientes');
 
-        $array = json_decode($response->getBody()->getContents(),true);
-
-        $data = $array['res'];
-
-        $client = new Client([
-            'base_uri' => 'https://backendmarket.herokuapp.com/api/clientes/'
-        ]);
-
-        $response = $client->request('GET','tipos');
-
         $array2 = json_decode($response->getBody()->getContents(),true);
 
-        $data2 = $array2['res'];   
-        
-        /* $client = new Client([
-            'base_uri' => 'https://backendmarket.herokuapp.com/api/'
+        $data2 = $array2['res'];
+
+        return view('ventas', compact('data'), compact('data2'));
+    }
+
+    public function insertarventas(Request $request) {
+
+        $client = new Client([
+            'base_uri' => 'http://backendmarket.herokuapp.com/api/'
         ]);
 
         $response = $client->request('GET','productos');
 
-        $array3 = json_decode($response->getBody()->getContents(),true);
+        $array = json_decode($response->getBody()->getContents(),true);
 
-        $data3 = $array3['res']; 
+        $producto = $array['res'];
+        
+        foreach ($producto as $prod) {
+            if ($prod['Id_Producto'] == $request->producto){
+                $precio = $prod['Precio'];
+            }
+        }
 
-        return $data3; */
+        $total = $precio * $request->cantidad;
 
-        return view('clientes', compact('data'), compact('data2'));
-    }
-
-    public function crearcliente(Request $request) {
 
         $client = new Client([
             'base_uri' => 'https://backendmarket.herokuapp.com/api/'
         ]);
 
+        $detalletventa = [
+            'id_producto' => intval($request->producto),
+            'cantidad' => intval($request->cantidad),
+            'precio_u' => $precio,
+            'total_detalle' => $total
+        ];
+
         $dato = [
-            'tipo' => $request->tipo,
-            'nombre' => $request->nombre,
-            'apellido' => $request->apellido,
-            'correo' => $request->correo,
-            'pass' => $request->pass,
-            'tel' => $request->telefono,
-            'nit' => $request->nit
+            'id_cliente' => intval($request->cliente),
+            'credito' => intval($request->credito),
+            'productos_vendidos' => intval($request->cantidad),
+            'total' => $total,
+            'id_factura' => intval($request->idfactura),
+            'serie_factura' => intval($request->seriefactura),
+            'detalleVenta' => [$detalletventa, $detalletventa, $detalletventa]
         ]; 
 
-        sleep(2);
-
-        $response = $client->request('POST','clientes', [
+        return $dato;
+        
+        $response = $client->request('POST','ventas', [
             'form_params' => $dato
         ]);
 
-        return redirect('/lista-clientes');
-        //return json_decode($response->getBody()->getContents(),true);
+        return json_decode($response->getBody()->getContents(),true);
+        return redirect('/insertar-venta');
+        
 
     }
 
