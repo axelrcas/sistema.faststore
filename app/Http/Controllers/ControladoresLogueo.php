@@ -11,6 +11,17 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class ControladoresLogueo extends Controller
 {
+    public function ver() {
+      $client = new Client([
+          'base_uri' => 'localhost:8000/api/'
+      ]);
+
+      $response = $client->request('GET','users');
+
+      return json_decode($response->getBody()->getContents(),true);
+    }
+
+
     public function iniciar_sesion(Request $request)
     {
         // POST LOGUEO
@@ -21,7 +32,7 @@ class ControladoresLogueo extends Controller
         $dato = [
             'correo' => $request->usuario,
             'pass' => $request->contrasenia
-        ]; 
+        ];
 
         $response = $client->request('POST','login', [
             'form_params' => $dato
@@ -39,7 +50,7 @@ class ControladoresLogueo extends Controller
             $request->session()->put('apellido_general',$data['ApellidoEmpleado']);
         }
 
-        return redirect('/home');        
+        return redirect('/home');
     }
 
     public function home(Request $request) {
@@ -93,7 +104,7 @@ class ControladoresLogueo extends Controller
             $empleadosDash = $empleados['numero'];
 
             return view('home')->with(['productoDash'=>$productoDash, 'proveedoresDash'=>$proveedoresDash, 'clientesDash'=>$clientesDash, 'empleadosDash'=>$empleadosDash]);
-        } 
+        }
     }
 
     public function cerrar_sesion(Request $request) {

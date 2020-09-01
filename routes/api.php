@@ -16,3 +16,6 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+/* Obtiene todos los usuarios de la base de datos */
+Route::get('users', 'MisControladores@ver_usuarios')->name('getAllUsers');
